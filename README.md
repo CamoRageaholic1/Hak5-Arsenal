@@ -3,13 +3,13 @@
 ![Security](https://img.shields.io/badge/Security-Research-red?style=for-the-badge&logo=security&logoColor=white)
 ![Hak5](https://img.shields.io/badge/Hak5-Arsenal-blue?style=for-the-badge&logo=hackthebox&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Devices](https://img.shields.io/badge/Devices-3-orange?style=for-the-badge)
+![Devices](https://img.shields.io/badge/Devices-4-orange?style=for-the-badge)
 
 **Comprehensive collection of payloads, scripts, and tools for Hak5 penetration testing devices.**
 
 **Author:** David Osisek (CamoZeroDay)  
 **Purpose:** Authorized penetration testing and security education  
-**Devices:** KeyCroc | Rubber Ducky | LAN Turtle
+**Devices:** KeyCroc | Rubber Ducky | LAN Turtle | WiFi Pineapple
 
 ---
 
@@ -48,16 +48,17 @@
 
 ### Supported Devices
 
-| Device | Category | Payloads | Tools | Status |
-|--------|----------|----------|-------|--------|
+| Device | Category | Payloads/Modules | Tools | Status |
+|--------|----------|------------------|-------|--------|
 | **KeyCroc** | USB Keystroke Injection | 2 | 1 | ✅ Active |
 | **Rubber Ducky** | USB Keystroke Injection | 5 | 1 | ✅ Active |
 | **LAN Turtle** | Network Implant | 4 | 2 | ✅ Active |
+| **WiFi Pineapple** | Wireless Auditing | 6 | 2 | ✅ Active |
 
 ### Total Arsenal
-- **📦 11 Payloads** across 3 devices
-- **🛠️ 4 Analysis Tools** for automation
-- **📚 15+ Documentation Files**
+- **📦 17 Payloads/Modules** across 4 devices
+- **🛠️ 6 Analysis Tools** for automation
+- **📚 20+ Documentation Files**
 - **🛡️ Complete Defensive Guides** for each device
 
 ---
@@ -68,16 +69,15 @@
 Hak5-Arsenal/
 ├── README.md                      # This file
 ├── LEGAL_DISCLAIMER.md            # Comprehensive legal framework
-├── DEFENSIVE_GUIDE.md             # Multi-device defense strategies
 ├── LICENSE                        # MIT License
+├── requirements.txt               # Python dependencies
 ├── .gitignore                     # Protects sensitive data
 │
 ├── keycroc/                       # KeyCroc Payloads
 │   ├── README.md                  # Device-specific guide
 │   ├── payloads/
 │   │   ├── system-recon.croc
-│   │   ├── cred-exfil-on-screenlock.croc
-│   │   └── DOCUMENTATION.md
+│   │   └── cred-exfil-on-screenlock.croc
 │   └── tools/
 │       └── loot-analyzer.py
 │
@@ -85,14 +85,8 @@ Hak5-Arsenal/
 │   ├── README.md                  # Device-specific guide
 │   ├── payloads/
 │   │   ├── windows/
-│   │   │   ├── system-recon.txt
-│   │   │   ├── reverse-shell.txt
-│   │   │   └── credential-harvester.txt
 │   │   ├── linux/
-│   │   │   ├── quick-recon.txt
-│   │   │   └── persistence.txt
 │   │   └── macos/
-│   │       └── system-enum.txt
 │   └── tools/
 │       └── payload-encoder.py
 │
@@ -106,6 +100,19 @@ Hak5-Arsenal/
 │   └── tools/
 │       ├── traffic-analyzer.py
 │       └── module-manager.sh
+│
+├── wifi-pineapple/                # WiFi Pineapple Modules
+│   ├── README.md                  # Device-specific guide
+│   ├── modules/
+│   │   ├── evil-portal.sh
+│   │   ├── pineap.sh
+│   │   ├── deauth.sh
+│   │   ├── recon-scanner.sh
+│   │   ├── handshake-capture.sh
+│   │   └── packet-capture.sh
+│   └── tools/
+│       ├── wifi-analyzer.py
+│       └── handshake-cracker.sh
 │
 └── tools/                         # Shared Tools
     ├── unified-analyzer.py        # Cross-device analysis
@@ -173,6 +180,28 @@ Hak5-Arsenal/
 
 ---
 
+### [WiFi Pineapple](wifi-pineapple/README.md) 🍍
+**Wireless network auditing and rogue access point**
+
+**Capabilities:**
+- Rogue access point
+- Man-in-the-middle
+- Deauthentication attacks
+- Captive portal phishing
+- WPA/WPA2 handshake capture
+- Client reconnaissance
+
+**Use Cases:**
+- Wireless security auditing
+- Evil twin attacks
+- Credential harvesting
+- Network mapping
+- Password auditing
+
+**[View WiFi Pineapple Modules →](wifi-pineapple/)**
+
+---
+
 ## 🎓 Educational Purpose
 
 ### For Red Teams (Offense)
@@ -183,7 +212,7 @@ Hak5-Arsenal/
 
 ### For Blue Teams (Defense)
 - **Understand:** Attacker methodologies
-- **Detect:** Suspicious USB and network activity
+- **Detect:** Suspicious USB, network, and wireless activity
 - **Implement:** Multi-layered defenses
 - **Test:** Security controls effectiveness
 
@@ -214,6 +243,7 @@ Hak5-Arsenal/
 - [ ] Implement clean desk policy
 - [ ] Cable locks for devices
 - [ ] Network equipment in secure locations
+- [ ] Monitor for rogue access points
 
 **USB Security:**
 - [ ] USB device whitelisting
@@ -227,6 +257,15 @@ Hak5-Arsenal/
 - [ ] Baseline network behavior
 - [ ] Monitor for rogue devices
 - [ ] MAC address authentication
+- [ ] 802.1X authentication
+
+**Wireless Security:**
+- [ ] WPA3 encryption
+- [ ] Protected Management Frames (PMF)
+- [ ] WIDS/WIPS deployment
+- [ ] Regular wireless surveys
+- [ ] Disable WPS
+- [ ] Strong pre-shared keys (20+ characters)
 
 **Monitoring:**
 - [ ] SIEM with device correlation
@@ -234,8 +273,7 @@ Hak5-Arsenal/
 - [ ] Network traffic analysis
 - [ ] PowerShell/command logging
 - [ ] Behavioral analytics
-
-**📖 [COMPREHENSIVE DEFENSIVE GUIDE →](DEFENSIVE_GUIDE.md)**
+- [ ] Wireless IDS (Kismet, WIDS)
 
 ---
 
@@ -283,6 +321,18 @@ ssh root@172.16.84.1
 turtle-module enable network-recon
 ```
 
+**WiFi Pineapple:**
+```bash
+# Access web interface
+http://172.16.42.1:1471
+
+# Or via SSH
+ssh root@172.16.42.1
+
+# Copy module
+scp wifi-pineapple/modules/evil-portal.sh root@172.16.42.1:/pineapple/modules/
+```
+
 ---
 
 ## 📊 Payload Overview
@@ -312,6 +362,17 @@ turtle-module enable network-recon
 | **Network Recon** | Discovery | Medium | Low | Network mapping |
 | **DNS Spoof** | MITM | High | High | Traffic redirection |
 | **Packet Capture** | Analysis | Low | Low | Traffic recording |
+
+### WiFi Pineapple Modules
+
+| Module | Purpose | Detectability | Risk Level | Capabilities |
+|--------|---------|---------------|------------|--------------|
+| **Evil Portal** | Credential theft | Medium-High | High | Captive portal phishing |
+| **PineAP** | Rogue AP | Medium | High | Auto client association |
+| **Deauth** | Client disconnect | High | HIGH | Force reconnection |
+| **Recon Scanner** | Discovery | Low | Low | Network enumeration |
+| **Handshake Capture** | Password audit | Medium | Medium | WPA2 offline cracking |
+| **Packet Capture** | Analysis | Low | Low | Traffic monitoring |
 
 ---
 
@@ -345,6 +406,23 @@ turtle-module enable network-recon
 - Intrusion detection systems (IDS)
 - Traffic baselines
 
+### Wireless Attack Detection
+
+**Indicators:**
+- Duplicate SSIDs with different BSSIDs
+- Unexpected stronger signal from known AP
+- Deauthentication storms
+- Unusual captive portals
+- Certificate warnings
+- Multiple SSIDs from single location
+
+**Tools:**
+- WIDS/WIPS (Wireless Intrusion Detection/Prevention)
+- Kismet
+- Airodump-ng
+- Wireshark
+- Spectrum analyzers
+
 ---
 
 ## 🛠️ Analysis Tools
@@ -356,6 +434,7 @@ turtle-module enable network-recon
 python tools/unified-analyzer.py -d keycroc loot/recon-*.txt
 python tools/unified-analyzer.py -d rubber-ducky loot/system-info.log
 python tools/unified-analyzer.py -d lan-turtle captures/traffic.pcap
+python tools/unified-analyzer.py -d wifi-pineapple captures/wifi.cap
 ```
 
 **Features:**
@@ -380,13 +459,13 @@ python tools/payload-converter.py -i ducky -o keycroc payload.txt
 
 ## 📈 Statistics
 
-- **Devices Supported:** 3
-- **Total Payloads:** 11
-- **Analysis Tools:** 4
-- **Documentation Pages:** 15+
-- **Lines of Code:** 5000+
-- **MITRE Techniques:** 25+
-- **Detection Methods:** 20+
+- **Devices Supported:** 4
+- **Total Payloads/Modules:** 17
+- **Analysis Tools:** 6
+- **Documentation Pages:** 20+
+- **Lines of Code:** 8000+
+- **MITRE Techniques:** 35+
+- **Detection Methods:** 30+
 
 ---
 
@@ -424,7 +503,9 @@ python tools/payload-converter.py -i ducky -o keycroc payload.txt
 ### Training
 - **SANS SEC560:** Network Penetration Testing
 - **SANS SEC504:** Hacker Tools and Techniques
+- **SANS SEC617:** Wireless Penetration Testing
 - **Offensive Security PEN-200:** PWK
+- **Offensive Security PEN-210:** OSWP
 - **eLearnSecurity eCPPT**
 
 ### Communities
@@ -437,6 +518,7 @@ python tools/payload-converter.py -i ducky -o keycroc payload.txt
 - **DuckyScript:** https://docs.hak5.org/duckyscript
 - **KeyCroc Wiki:** https://github.com/hak5/keycroc-payloads
 - **LAN Turtle Wiki:** https://github.com/hak5/lanturtle-modules
+- **WiFi Pineapple Wiki:** https://github.com/hak5/wifipineapple-modules
 
 ---
 
@@ -457,7 +539,7 @@ MIT License - See [LICENSE](LICENSE)
 **For questions about:**
 - Payload usage → Read device-specific docs
 - Legal concerns → Consult attorney
-- Defensive strategies → See DEFENSIVE_GUIDE.md
+- Defensive strategies → See device-specific defensive guides
 - Contributions → Submit pull request
 
 ---
@@ -470,6 +552,7 @@ MIT License - See [LICENSE](LICENSE)
 - Violations result in **CRIMINAL PROSECUTION**
 - You are **SOLELY RESPONSIBLE** for your actions
 - **CHECK LOCAL LAWS** before use
+- **FCC regulations** apply to wireless devices
 
 **If there is ANY doubt about authorization, DO NOT PROCEED.**
 
