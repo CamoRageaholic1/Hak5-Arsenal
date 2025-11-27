@@ -3,13 +3,13 @@
 ![Security](https://img.shields.io/badge/Security-Research-red?style=for-the-badge&logo=security&logoColor=white)
 ![Hak5](https://img.shields.io/badge/Hak5-Arsenal-blue?style=for-the-badge&logo=hackthebox&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Devices](https://img.shields.io/badge/Devices-4-orange?style=for-the-badge)
+![Devices](https://img.shields.io/badge/Devices-6-orange?style=for-the-badge)
 
 **Comprehensive collection of payloads, scripts, and tools for Hak5 penetration testing devices.**
 
 **Author:** David Osisek (CamoZeroDay)  
 **Purpose:** Authorized penetration testing and security education  
-**Devices:** KeyCroc | Rubber Ducky | LAN Turtle | WiFi Pineapple
+**Devices:** KeyCroc | Rubber Ducky | LAN Turtle | WiFi Pineapple | Plunder Bug | Shark Jack
 
 ---
 
@@ -54,70 +54,14 @@
 | **Rubber Ducky** | USB Keystroke Injection | 5 | 1 | ✅ Active |
 | **LAN Turtle** | Network Implant | 4 | 2 | ✅ Active |
 | **WiFi Pineapple** | Wireless Auditing | 6 | 2 | ✅ Active |
+| **Plunder Bug** | USB Data Exfiltration | 4 | 2 | ✅ Active |
+| **Shark Jack** | Portable Network Attack | 5 | 2 | ✅ Active |
 
 ### Total Arsenal
-- **📦 17 Payloads/Modules** across 4 devices
-- **🛠️ 6 Analysis Tools** for automation
-- **📚 20+ Documentation Files**
+- **📦 26 Payloads/Modules** across 6 devices
+- **🛠️ 10 Analysis Tools** for automation
+- **📚 30+ Documentation Files**
 - **🛡️ Complete Defensive Guides** for each device
-
----
-
-## 📁 Repository Structure
-
-```
-Hak5-Arsenal/
-├── README.md                      # This file
-├── LEGAL_DISCLAIMER.md            # Comprehensive legal framework
-├── LICENSE                        # MIT License
-├── requirements.txt               # Python dependencies
-├── .gitignore                     # Protects sensitive data
-│
-├── keycroc/                       # KeyCroc Payloads
-│   ├── README.md                  # Device-specific guide
-│   ├── payloads/
-│   │   ├── system-recon.croc
-│   │   └── cred-exfil-on-screenlock.croc
-│   └── tools/
-│       └── loot-analyzer.py
-│
-├── rubber-ducky/                  # Rubber Ducky Scripts
-│   ├── README.md                  # Device-specific guide
-│   ├── payloads/
-│   │   ├── windows/
-│   │   ├── linux/
-│   │   └── macos/
-│   └── tools/
-│       └── payload-encoder.py
-│
-├── lan-turtle/                    # LAN Turtle Modules
-│   ├── README.md                  # Device-specific guide
-│   ├── modules/
-│   │   ├── persistent-access.sh
-│   │   ├── network-recon.sh
-│   │   ├── dns-spoof.sh
-│   │   └── packet-capture.sh
-│   └── tools/
-│       ├── traffic-analyzer.py
-│       └── module-manager.sh
-│
-├── wifi-pineapple/                # WiFi Pineapple Modules
-│   ├── README.md                  # Device-specific guide
-│   ├── modules/
-│   │   ├── evil-portal.sh
-│   │   ├── pineap.sh
-│   │   ├── deauth.sh
-│   │   ├── recon-scanner.sh
-│   │   ├── handshake-capture.sh
-│   │   └── packet-capture.sh
-│   └── tools/
-│       ├── wifi-analyzer.py
-│       └── handshake-cracker.sh
-│
-└── tools/                         # Shared Tools
-    ├── unified-analyzer.py        # Cross-device analysis
-    └── payload-converter.py       # Convert between formats
-```
 
 ---
 
@@ -126,17 +70,7 @@ Hak5-Arsenal/
 ### [KeyCroc](keycroc/README.md) 🐊
 **USB keystroke injection and data exfiltration**
 
-**Capabilities:**
-- Inline keyboard interception
-- Keystroke injection
-- Mass storage for loot
-- Network exfiltration
-
-**Use Cases:**
-- Credential harvesting
-- System enumeration
-- Data exfiltration
-- Post-exploitation
+**Use Cases:** Credential harvesting, system enumeration, data exfiltration, post-exploitation
 
 **[View KeyCroc Payloads →](keycroc/)**
 
@@ -145,17 +79,7 @@ Hak5-Arsenal/
 ### [Rubber Ducky](rubber-ducky/README.md) 🦆
 **USB keystroke injection with DuckyScript**
 
-**Capabilities:**
-- HID keyboard emulation
-- Cross-platform payloads
-- Rapid deployment
-- No software installation
-
-**Use Cases:**
-- Quick reconnaissance
-- Reverse shells
-- Privilege escalation
-- Persistence mechanisms
+**Use Cases:** Quick reconnaissance, reverse shells, privilege escalation, persistence
 
 **[View Rubber Ducky Payloads →](rubber-ducky/)**
 
@@ -164,17 +88,7 @@ Hak5-Arsenal/
 ### [LAN Turtle](lan-turtle/README.md) 🐢
 **Covert network access and man-in-the-middle**
 
-**Capabilities:**
-- Network implant
-- Remote access
-- Packet capture
-- DNS/ARP spoofing
-
-**Use Cases:**
-- Network reconnaissance
-- Traffic analysis
-- Persistent access
-- MITM attacks
+**Use Cases:** Network reconnaissance, traffic analysis, persistent access, MITM attacks
 
 **[View LAN Turtle Modules →](lan-turtle/)**
 
@@ -183,22 +97,27 @@ Hak5-Arsenal/
 ### [WiFi Pineapple](wifi-pineapple/README.md) 🍍
 **Wireless network auditing and rogue access point**
 
-**Capabilities:**
-- Rogue access point
-- Man-in-the-middle
-- Deauthentication attacks
-- Captive portal phishing
-- WPA/WPA2 handshake capture
-- Client reconnaissance
-
-**Use Cases:**
-- Wireless security auditing
-- Evil twin attacks
-- Credential harvesting
-- Network mapping
-- Password auditing
+**Use Cases:** Wireless security auditing, evil twin attacks, credential harvesting, WPA2 auditing
 
 **[View WiFi Pineapple Modules →](wifi-pineapple/)**
+
+---
+
+### [Plunder Bug](plunder-bug/README.md) 🐞
+**Covert USB data exfiltration and file harvesting**
+
+**Use Cases:** Document collection, credential harvesting, media collection, database exfiltration
+
+**[View Plunder Bug Modules →](plunder-bug/)**
+
+---
+
+### [Shark Jack](shark-jack/README.md) 🦈
+**Portable network attack and reconnaissance**
+
+**Use Cases:** Quick network audits, packet capture, credential sniffing, SMB enumeration
+
+**[View Shark Jack Modules →](shark-jack/)**
 
 ---
 
@@ -250,6 +169,7 @@ Hak5-Arsenal/
 - [ ] Block unauthorized HID devices
 - [ ] Endpoint protection with USB monitoring
 - [ ] Alert on new device connections
+- [ ] Disable AutoRun/AutoPlay
 
 **Network Security:**
 - [ ] Network segmentation
@@ -277,6 +197,54 @@ Hak5-Arsenal/
 
 ---
 
+## 📊 Complete Payload Overview
+
+### USB Attack Devices
+
+**KeyCroc:**
+- System Reconnaissance (Windows)
+- Credential Exfiltration (Windows)
+
+**Rubber Ducky:**
+- System Recon (Windows)
+- Reverse Shell (Windows)
+- Credential Harvester (Windows)
+- Quick Recon (Linux)
+- Persistence (Linux)
+
+**Plunder Bug:**
+- Document Harvester
+- Credentials & Keys
+- Media Collector
+- Database Exfiltrator
+
+### Network Attack Devices
+
+**LAN Turtle:**
+- Persistent Access
+- Network Reconnaissance
+- DNS Spoofing
+- Packet Capture
+
+**Shark Jack:**
+- Network Reconnaissance
+- Packet Capture
+- SMB Enumeration
+- Responder Attack
+- SSH Brute Force
+
+### Wireless Attack Device
+
+**WiFi Pineapple:**
+- Evil Portal
+- PineAP
+- Deauthentication
+- Recon Scanner
+- Handshake Capture
+- Packet Capture
+
+---
+
 ## 🚀 Quick Start
 
 ### Installation
@@ -290,182 +258,94 @@ cd Hak5-Arsenal
 pip install -r requirements.txt
 ```
 
-### Device-Specific Setup
+### Device Setup Examples
 
-**KeyCroc:**
+**USB Devices (KeyCroc, Rubber Ducky, Plunder Bug):**
 ```bash
-# Copy payload to device
+# KeyCroc
 scp keycroc/payloads/system-recon.croc root@172.16.64.1:/root/payloads/
 
-# Set as active
-ssh root@172.16.64.1 'cp /root/payloads/system-recon.croc /root/payload.croc'
+# Rubber Ducky
+python rubber-ducky/tools/payload-encoder.py payload.txt
+
+# Plunder Bug
+# Copy modules to MicroSD card
+cp plunder-bug/modules/*.sh /mnt/plunderbug/
 ```
 
-**Rubber Ducky:**
+**Network Devices (LAN Turtle, Shark Jack):**
 ```bash
-# Encode payload
-cd rubber-ducky/tools
-python payload-encoder.py ../payloads/windows/system-recon.txt
-
-# Copy inject.bin to Ducky SD card
-cp inject.bin /media/DUCKY/
-```
-
-**LAN Turtle:**
-```bash
-# Copy module to device
+# LAN Turtle
 scp lan-turtle/modules/network-recon.sh root@172.16.84.1:/turtle/modules/
 
-# Enable module
-ssh root@172.16.84.1
-turtle-module enable network-recon
+# Shark Jack
+ssh root@172.16.24.1
+cp /root/payloads/network-recon.sh /root/payload.sh
 ```
 
-**WiFi Pineapple:**
+**Wireless Device (WiFi Pineapple):**
 ```bash
-# Access web interface
+# Web interface
 http://172.16.42.1:1471
 
-# Or via SSH
-ssh root@172.16.42.1
-
-# Copy module
+# SSH
 scp wifi-pineapple/modules/evil-portal.sh root@172.16.42.1:/pineapple/modules/
 ```
-
----
-
-## 📊 Payload Overview
-
-### KeyCroc Payloads
-
-| Payload | Target | Execution Time | Stealth | Capabilities |
-|---------|--------|----------------|---------|--------------|
-| **System Recon** | Windows | 60-90s | Low | System enumeration |
-| **Cred Exfil** | Windows | 120-300s | Medium | Credential harvesting |
-
-### Rubber Ducky Payloads
-
-| Payload | Target | Execution Time | Stealth | Capabilities |
-|---------|--------|----------------|---------|--------------|
-| **System Recon** | Windows | 30-60s | Low | Quick enumeration |
-| **Reverse Shell** | Windows | 10-20s | Medium | Remote access |
-| **Cred Harvester** | Windows | 45-90s | Low | Password extraction |
-| **Quick Recon** | Linux | 20-40s | Low | System info gathering |
-| **Persistence** | Linux | 30-60s | High | Backdoor installation |
-
-### LAN Turtle Modules
-
-| Module | Purpose | Network Impact | Detectability | Capabilities |
-|--------|---------|----------------|---------------|--------------|
-| **Persistent Access** | Remote shell | Low | Medium | SSH backdoor |
-| **Network Recon** | Discovery | Medium | Low | Network mapping |
-| **DNS Spoof** | MITM | High | High | Traffic redirection |
-| **Packet Capture** | Analysis | Low | Low | Traffic recording |
-
-### WiFi Pineapple Modules
-
-| Module | Purpose | Detectability | Risk Level | Capabilities |
-|--------|---------|---------------|------------|--------------|
-| **Evil Portal** | Credential theft | Medium-High | High | Captive portal phishing |
-| **PineAP** | Rogue AP | Medium | High | Auto client association |
-| **Deauth** | Client disconnect | High | HIGH | Force reconnection |
-| **Recon Scanner** | Discovery | Low | Low | Network enumeration |
-| **Handshake Capture** | Password audit | Medium | Medium | WPA2 offline cracking |
-| **Packet Capture** | Analysis | Low | Low | Traffic monitoring |
 
 ---
 
 ## 🔍 Detection Methods
 
 ### USB Device Detection
-
-**Windows Event Logs:**
 - Event ID 6416 - New device recognized
 - Event ID 20001/20003 - USB connect/disconnect
-- Event ID 4688 - Process creation
-
-**Indicators:**
-- Unrecognized HID devices
-- Rapid PowerShell execution after USB insertion
-- Network connections from user workstations
-- File creation on removable media
+- Rapid file access patterns
+- Unknown HID devices
+- Bulk file reads
 
 ### Network Anomaly Detection
-
-**Indicators:**
 - Unknown MAC addresses
-- Unexpected network segments
-- Anomalous traffic patterns
-- New DHCP requests
-- Rogue DNS responses
-
-**Tools:**
-- SIEM correlation rules
-- Network access control (NAC)
-- Intrusion detection systems (IDS)
-- Traffic baselines
+- Network scanning activity
+- LLMNR/NBT-NS poisoning
+- Rogue DHCP responses
+- SSH brute force attempts
+- Unusual authentication patterns
 
 ### Wireless Attack Detection
-
-**Indicators:**
 - Duplicate SSIDs with different BSSIDs
-- Unexpected stronger signal from known AP
 - Deauthentication storms
-- Unusual captive portals
+- Rogue access points
+- Evil twin detection
 - Certificate warnings
-- Multiple SSIDs from single location
-
-**Tools:**
-- WIDS/WIPS (Wireless Intrusion Detection/Prevention)
-- Kismet
-- Airodump-ng
-- Wireshark
-- Spectrum analyzers
+- Unexpected captive portals
 
 ---
 
 ## 🛠️ Analysis Tools
 
-### Unified Loot Analyzer
-**Purpose:** Cross-device payload analysis
-
-```bash
-python tools/unified-analyzer.py -d keycroc loot/recon-*.txt
-python tools/unified-analyzer.py -d rubber-ducky loot/system-info.log
-python tools/unified-analyzer.py -d lan-turtle captures/traffic.pcap
-python tools/unified-analyzer.py -d wifi-pineapple captures/wifi.cap
-```
-
-**Features:**
-- Device-specific parsing
-- Security gap identification
-- Risk scoring
-- JSON export
-- Report generation
-
-### Payload Converter
-**Purpose:** Convert payloads between formats
-
-```bash
-# KeyCroc to Rubber Ducky
-python tools/payload-converter.py -i keycroc -o ducky payload.croc
-
-# Rubber Ducky to KeyCroc
-python tools/payload-converter.py -i ducky -o keycroc payload.txt
-```
+### Cross-Device Analyzers
+- **Unified Loot Analyzer** - Parse all device outputs
+- **Payload Converter** - Convert between formats
+- **WiFi Analyzer** - PCAP analysis
+- **Plunder Analyzer** - File categorization
+- **Shark Jack Analyzer** - Network data processing
+- **Hash Cracker** - Credential recovery
+- **Traffic Analyzer** - Network forensics
+- **Handshake Cracker** - WPA2 cracking
+- **File Classifier** - Data organization
+- **Loot Analyzers** - Device-specific parsing
 
 ---
 
 ## 📈 Statistics
 
-- **Devices Supported:** 4
-- **Total Payloads/Modules:** 17
-- **Analysis Tools:** 6
-- **Documentation Pages:** 20+
-- **Lines of Code:** 8000+
-- **MITRE Techniques:** 35+
-- **Detection Methods:** 30+
+- **Devices Supported:** 6
+- **Total Payloads/Modules:** 26
+- **Analysis Tools:** 10
+- **Documentation Pages:** 30+
+- **Lines of Code:** 15,000+
+- **MITRE Techniques:** 50+
+- **Detection Methods:** 40+
 
 ---
 
@@ -504,7 +384,8 @@ python tools/payload-converter.py -i ducky -o keycroc payload.txt
 - **SANS SEC560:** Network Penetration Testing
 - **SANS SEC504:** Hacker Tools and Techniques
 - **SANS SEC617:** Wireless Penetration Testing
-- **Offensive Security PEN-200:** PWK
+- **SANS FOR508:** Advanced Incident Response
+- **Offensive Security PEN-200:** PWK/OSCP
 - **Offensive Security PEN-210:** OSWP
 - **eLearnSecurity eCPPT**
 
@@ -519,6 +400,7 @@ python tools/payload-converter.py -i ducky -o keycroc payload.txt
 - **KeyCroc Wiki:** https://github.com/hak5/keycroc-payloads
 - **LAN Turtle Wiki:** https://github.com/hak5/lanturtle-modules
 - **WiFi Pineapple Wiki:** https://github.com/hak5/wifipineapple-modules
+- **Shark Jack Wiki:** https://github.com/hak5/sharkjack-payloads
 
 ---
 
@@ -539,7 +421,7 @@ MIT License - See [LICENSE](LICENSE)
 **For questions about:**
 - Payload usage → Read device-specific docs
 - Legal concerns → Consult attorney
-- Defensive strategies → See device-specific defensive guides
+- Defensive strategies → See device-specific guides
 - Contributions → Submit pull request
 
 ---
