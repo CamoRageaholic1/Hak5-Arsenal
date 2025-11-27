@@ -1,0 +1,73 @@
+# Loot and Captured Data
+loot/
+*.loot
+*.dump
+*.dmp
+*.cap
+*.pcap
+*.pcapng
+
+# Credentials and Sensitive Data
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.txt
+passwords.txt
+hashes.txt
+
+# System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary Files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Backups
+*.bak
+*.backup
+
+# Compiled Payloads
+*.bin
+
+# Network Captures
+*.dmp
+*.dump
+
+# SSH Keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Config Files with Secrets
+config.json
+settings.json
+*.conf
+
+# Test Output
+test-results/
+output/
