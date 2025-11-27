@@ -4,8 +4,9 @@
 ![Hak5](https://img.shields.io/badge/Hak5-Arsenal-blue?style=for-the-badge&logo=hackthebox&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Devices](https://img.shields.io/badge/Devices-6-orange?style=for-the-badge)
+![Payloads](https://img.shields.io/badge/Payloads-32-purple?style=for-the-badge)
 
-**Comprehensive collection of payloads, scripts, and tools for Hak5 penetration testing devices.**
+**Comprehensive collection of 32 production-ready payloads for Hak5 penetration testing devices.**
 
 **Author:** David Osisek (CamoZeroDay)  
 **Purpose:** Authorized penetration testing and security education  
@@ -48,29 +49,107 @@
 
 ### Supported Devices
 
-| Device | Category | Payloads/Modules | Tools | Status |
-|--------|----------|------------------|-------|--------|
-| **KeyCroc** | USB Keystroke Injection | 2 | 1 | ✅ Active |
-| **Rubber Ducky** | USB Keystroke Injection | 5 | 1 | ✅ Active |
-| **LAN Turtle** | Network Implant | 4 | 2 | ✅ Active |
-| **WiFi Pineapple** | Wireless Auditing | 6 | 2 | ✅ Active |
-| **Plunder Bug** | USB Data Exfiltration | 4 | 2 | ✅ Active |
-| **Shark Jack** | Portable Network Attack | 5 | 2 | ✅ Active |
+| Device | Category | Payloads | Status |
+|--------|----------|----------|--------|
+| **KeyCroc** | USB Keystroke Injection | 5 | ✅ Complete |
+| **Rubber Ducky** | USB Keystroke Injection | 6 | ✅ Complete |
+| **LAN Turtle** | Network Implant | 5 | ✅ Complete |
+| **WiFi Pineapple** | Wireless Auditing | 6 | ✅ Complete |
+| **Plunder Bug** | USB Data Exfiltration | 5 | ✅ Complete |
+| **Shark Jack** | Portable Network Attack | 5 | ✅ Complete |
 
 ### Total Arsenal
-- **📦 26 Payloads/Modules** across 6 devices
-- **🛠️ 10 Analysis Tools** for automation
-- **📚 30+ Documentation Files**
+- **📦 32 Payloads/Modules** fully implemented and tested
+- **📚 100KB+ Documentation** across 6 devices
 - **🛡️ Complete Defensive Guides** for each device
+- **🔍 Detection Methods** with SIEM rules
+
+---
+
+## 📁 Repository Structure
+
+```
+Hak5-Arsenal/
+├── README.md                      # This file
+├── LEGAL_DISCLAIMER.md            # Comprehensive legal framework
+├── COMPLETION_SUMMARY.md          # Project completion details
+├── LICENSE                        # MIT License
+├── requirements.txt               # Python dependencies
+├── .gitignore                     # Protects sensitive data
+│
+├── keycroc/                       # KeyCroc Payloads (5)
+│   ├── README.md                  # Device documentation (15KB)
+│   └── payloads/
+│       ├── system-recon.croc
+│       ├── browser-cred-exfil.croc
+│       ├── wifi-password-dump.croc
+│       ├── sam-registry-dump.croc
+│       └── reverse-shell.croc
+│
+├── rubber-ducky/                  # Rubber Ducky Scripts (6)
+│   ├── README.md                  # Device documentation (18KB)
+│   └── payloads/
+│       ├── windows/
+│       │   ├── system-recon.txt
+│       │   ├── reverse-shell.txt
+│       │   └── credential-harvester.txt
+│       ├── linux/
+│       │   ├── quick-recon.txt
+│       │   └── persistence.txt
+│       └── macos/
+│           └── system-enum.txt
+│
+├── lan-turtle/                    # LAN Turtle Modules (5)
+│   ├── README.md                  # Device documentation (19KB)
+│   └── modules/
+│       ├── persistent-access.sh
+│       ├── network-recon.sh
+│       ├── dns-spoof.sh
+│       ├── packet-capture.sh
+│       └── mitm-sslstrip.sh
+│
+├── wifi-pineapple/                # WiFi Pineapple Modules (6)
+│   ├── README.md                  # Device documentation (15KB)
+│   └── modules/
+│       ├── evil-portal.sh
+│       ├── pineap.sh
+│       ├── deauth.sh
+│       ├── recon-scanner.sh
+│       ├── handshake-capture.sh
+│       └── packet-capture.sh
+│
+├── plunder-bug/                   # Plunder Bug Modules (5)
+│   ├── README.md                  # Device documentation (20KB)
+│   └── modules/
+│       ├── document-harvester.sh
+│       ├── creds-and-keys.sh
+│       ├── media-collector.sh
+│       ├── database-exfiltrator.sh
+│       └── source-code-collector.sh
+│
+└── shark-jack/                    # Shark Jack Modules (5)
+    ├── README.md                  # Device documentation (18KB)
+    └── modules/
+        ├── network-recon.sh
+        ├── packet-capture.sh
+        ├── smb-enumeration.sh
+        ├── responder-attack.sh
+        └── ssh-bruteforce.sh
+```
 
 ---
 
 ## 🔧 Device-Specific Guides
 
 ### [KeyCroc](keycroc/README.md) 🐊
-**USB keystroke injection and data exfiltration**
+**USB keystroke injection and credential exfiltration**
 
-**Use Cases:** Credential harvesting, system enumeration, data exfiltration, post-exploitation
+**5 Production Payloads:**
+1. **system-recon.croc** - Complete Windows system enumeration (25+ categories)
+2. **browser-cred-exfil.croc** - Chrome, Firefox, Edge credential databases
+3. **wifi-password-dump.croc** - All saved WiFi network passwords
+4. **sam-registry-dump.croc** - Windows SAM/SYSTEM/SECURITY hives (requires admin)
+5. **reverse-shell.croc** - PowerShell reverse shell connection
 
 **[View KeyCroc Payloads →](keycroc/)**
 
@@ -79,16 +158,33 @@
 ### [Rubber Ducky](rubber-ducky/README.md) 🦆
 **USB keystroke injection with DuckyScript**
 
-**Use Cases:** Quick reconnaissance, reverse shells, privilege escalation, persistence
+**6 Production Payloads:**
+
+**Windows (3):**
+1. **system-recon.txt** - Fast Windows enumeration
+2. **reverse-shell.txt** - PowerShell reverse shell
+3. **credential-harvester.txt** - Multi-browser credential extraction
+
+**Linux (2):**
+4. **quick-recon.txt** - Rapid Linux system discovery
+5. **persistence.txt** - SSH backdoor with cron persistence
+
+**macOS (1):**
+6. **system-enum.txt** - macOS system profiler data collection
 
 **[View Rubber Ducky Payloads →](rubber-ducky/)**
 
 ---
 
 ### [LAN Turtle](lan-turtle/README.md) 🐢
-**Covert network access and man-in-the-middle**
+**Covert network implant and MITM attacks**
 
-**Use Cases:** Network reconnaissance, traffic analysis, persistent access, MITM attacks
+**5 Production Modules:**
+1. **persistent-access.sh** - Autossh reverse tunnel with auto-reconnect
+2. **network-recon.sh** - Comprehensive network mapping (nmap, arp-scan)
+3. **dns-spoof.sh** - DNS redirection and poisoning
+4. **packet-capture.sh** - Full traffic capture with rotation
+5. **mitm-sslstrip.sh** - SSL downgrade MITM attack
 
 **[View LAN Turtle Modules →](lan-turtle/)**
 
@@ -97,7 +193,13 @@
 ### [WiFi Pineapple](wifi-pineapple/README.md) 🍍
 **Wireless network auditing and rogue access point**
 
-**Use Cases:** Wireless security auditing, evil twin attacks, credential harvesting, WPA2 auditing
+**6 Production Modules:**
+1. **evil-portal.sh** - Captive portal phishing with credential logging
+2. **pineap.sh** - Rogue AP with Karma attack and SSID harvesting
+3. **deauth.sh** - WiFi deauthentication attacks (⚠️ HIGH DETECTABILITY)
+4. **recon-scanner.sh** - Wireless network and client discovery
+5. **handshake-capture.sh** - WPA/WPA2 4-way handshake capture
+6. **packet-capture.sh** - Full 802.11 frame capture
 
 **[View WiFi Pineapple Modules →](wifi-pineapple/)**
 
@@ -106,7 +208,12 @@
 ### [Plunder Bug](plunder-bug/README.md) 🐞
 **Covert USB data exfiltration and file harvesting**
 
-**Use Cases:** Document collection, credential harvesting, media collection, database exfiltration
+**5 Production Modules:**
+1. **document-harvester.sh** - Office documents, PDFs, text files
+2. **creds-and-keys.sh** - SSH keys, browser DBs, GPG keys, password managers
+3. **media-collector.sh** - Images, videos, audio with filtering
+4. **database-exfiltrator.sh** - SQLite, CSV, Excel databases
+5. **source-code-collector.sh** - Source code and Git repositories
 
 **[View Plunder Bug Modules →](plunder-bug/)**
 
@@ -115,40 +222,161 @@
 ### [Shark Jack](shark-jack/README.md) 🦈
 **Portable network attack and reconnaissance**
 
-**Use Cases:** Quick network audits, packet capture, credential sniffing, SMB enumeration
+**5 Production Modules:**
+1. **network-recon.sh** - Fast network discovery (2-10 min)
+2. **packet-capture.sh** - Targeted traffic capture (HTTP/FTP/Telnet)
+3. **smb-enumeration.sh** - Windows share and NetBIOS discovery
+4. **responder-attack.sh** - LLMNR/NBT-NS poisoning for NTLMv2 hashes
+5. **ssh-bruteforce.sh** - SSH credential testing with common passwords
 
 **[View Shark Jack Modules →](shark-jack/)**
 
 ---
 
-## 🎓 Educational Purpose
+## 📊 Complete Payload Matrix
 
-### For Red Teams (Offense)
-- **Learn:** Attack techniques across multiple vectors
-- **Practice:** Real-world penetration testing
-- **Understand:** Device capabilities and limitations
-- **Develop:** Custom payloads and modules
+### USB Attack Devices (16 payloads)
 
-### For Blue Teams (Defense)
-- **Understand:** Attacker methodologies
-- **Detect:** Suspicious USB, network, and wireless activity
-- **Implement:** Multi-layered defenses
-- **Test:** Security controls effectiveness
+| Device | Payload | Category | Target |
+|--------|---------|----------|--------|
+| KeyCroc | system-recon | Reconnaissance | Windows |
+| KeyCroc | browser-cred-exfil | Credential Access | Windows |
+| KeyCroc | wifi-password-dump | Credential Access | Windows |
+| KeyCroc | sam-registry-dump | Credential Access | Windows (Admin) |
+| KeyCroc | reverse-shell | Execution | Windows |
+| Rubber Ducky | system-recon | Reconnaissance | Windows |
+| Rubber Ducky | reverse-shell | Execution | Windows |
+| Rubber Ducky | credential-harvester | Credential Access | Windows |
+| Rubber Ducky | quick-recon | Reconnaissance | Linux |
+| Rubber Ducky | persistence | Persistence | Linux |
+| Rubber Ducky | system-enum | Reconnaissance | macOS |
+| Plunder Bug | document-harvester | Collection | Cross-platform |
+| Plunder Bug | creds-and-keys | Credential Access | Cross-platform |
+| Plunder Bug | media-collector | Collection | Cross-platform |
+| Plunder Bug | database-exfiltrator | Collection | Cross-platform |
+| Plunder Bug | source-code-collector | Collection | Cross-platform |
 
-### MITRE ATT&CK Coverage
+### Network Attack Devices (10 payloads)
 
-**Tactics Demonstrated:**
-- TA0001 - Initial Access
-- TA0002 - Execution
-- TA0003 - Persistence
-- TA0004 - Privilege Escalation
-- TA0005 - Defense Evasion
-- TA0006 - Credential Access
-- TA0007 - Discovery
-- TA0008 - Lateral Movement
-- TA0009 - Collection
-- TA0010 - Exfiltration
-- TA0011 - Command and Control
+| Device | Module | Category | Detectability |
+|--------|--------|----------|--------------|
+| LAN Turtle | persistent-access | Persistence | Low |
+| LAN Turtle | network-recon | Discovery | Medium |
+| LAN Turtle | dns-spoof | MITM | High |
+| LAN Turtle | packet-capture | Collection | Low |
+| LAN Turtle | mitm-sslstrip | MITM | High |
+| Shark Jack | network-recon | Discovery | Medium |
+| Shark Jack | packet-capture | Collection | Low |
+| Shark Jack | smb-enumeration | Discovery | Medium |
+| Shark Jack | responder-attack | Credential Access | High |
+| Shark Jack | ssh-bruteforce | Credential Access | High |
+
+### Wireless Attack Device (6 payloads)
+
+| Module | Category | Detectability | Legal Risk |
+|--------|----------|---------------|------------|
+| evil-portal | Credential Access | Medium-High | High |
+| pineap | MITM | Medium | High |
+| deauth | Denial of Service | High | VERY HIGH |
+| recon-scanner | Discovery | Low | Low |
+| handshake-capture | Credential Access | Medium | Medium |
+| packet-capture | Collection | Low | Low |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+```bash
+# Clone repository
+git clone https://github.com/CamoRageaholic1/Hak5-Arsenal.git
+cd Hak5-Arsenal
+
+# Install Python dependencies (for future tools)
+pip install -r requirements.txt
+```
+
+### KeyCroc Deployment
+
+```bash
+# Copy payload to KeyCroc
+scp keycroc/payloads/system-recon.croc root@172.16.64.1:/root/payloads/
+
+# SSH to KeyCroc and activate
+ssh root@172.16.64.1
+cp /root/payloads/system-recon.croc /root/payload.croc
+
+# Deploy device and wait for LED to indicate completion
+```
+
+### Rubber Ducky Deployment
+
+```bash
+# Payloads are in DuckyScript format (.txt)
+# Use duckencoder or online encoder to convert to inject.bin
+# Copy inject.bin to Ducky SD card
+
+# Example: Encode Windows recon payload
+# (Use online encoder at: https://ducktoolkit.com/encode)
+# Copy rubber-ducky/payloads/windows/system-recon.txt
+# Encode to inject.bin
+# Copy inject.bin to Ducky SD card root
+```
+
+### LAN Turtle Deployment
+
+```bash
+# Copy module to LAN Turtle
+scp lan-turtle/modules/network-recon.sh root@172.16.84.1:/root/modules/
+
+# SSH and execute
+ssh root@172.16.84.1
+bash /root/modules/network-recon.sh
+```
+
+### WiFi Pineapple Deployment
+
+```bash
+# SSH to Pineapple
+ssh root@172.16.42.1
+
+# Copy module
+scp wifi-pineapple/modules/evil-portal.sh root@172.16.42.1:/root/modules/
+
+# Execute module
+bash /root/modules/evil-portal.sh
+```
+
+### Plunder Bug Deployment
+
+```bash
+# Mount Plunder Bug MicroSD card
+# Copy modules to card
+cp plunder-bug/modules/*.sh /mnt/plunderbug/
+
+# Configure target file types in each module
+# Insert into target system
+# Modules execute automatically
+# Retrieve device and mount to view loot/
+```
+
+### Shark Jack Deployment
+
+```bash
+# Enter Arming Mode (hold button during boot - LED turns blue)
+ssh root@172.16.24.1
+# Password: hak5shark
+
+# Copy payload
+scp shark-jack/modules/network-recon.sh root@172.16.24.1:/root/payloads/
+
+# Set as active payload
+cp /root/payloads/network-recon.sh /root/payload.sh
+chmod +x /root/payload.sh
+
+# Deploy on target network, press button to execute
+```
 
 ---
 
@@ -157,140 +385,43 @@
 ### Quick Defense Checklist
 
 **Physical Security:**
-- [ ] Lock workstations when unattended
-- [ ] Disable unused USB ports
-- [ ] Implement clean desk policy
-- [ ] Cable locks for devices
-- [ ] Network equipment in secure locations
-- [ ] Monitor for rogue access points
+- [x] Lock workstations when unattended
+- [x] Disable unused USB ports
+- [x] Implement clean desk policy
+- [x] Use cable locks for devices
+- [x] Secure network equipment in locked rooms
+- [x] Monitor for rogue wireless access points
 
 **USB Security:**
-- [ ] USB device whitelisting
-- [ ] Block unauthorized HID devices
-- [ ] Endpoint protection with USB monitoring
-- [ ] Alert on new device connections
-- [ ] Disable AutoRun/AutoPlay
+- [x] USB device whitelisting
+- [x] Block unauthorized HID devices
+- [x] Endpoint protection with USB monitoring
+- [x] Alert on new device connections
+- [x] Disable AutoRun/AutoPlay
 
 **Network Security:**
-- [ ] Network segmentation
-- [ ] Anomaly detection
-- [ ] Baseline network behavior
-- [ ] Monitor for rogue devices
-- [ ] MAC address authentication
-- [ ] 802.1X authentication
+- [x] Network segmentation (VLANs)
+- [x] Anomaly detection systems
+- [x] Baseline network behavior
+- [x] Monitor for rogue devices (NAC)
+- [x] MAC address authentication
+- [x] 802.1X authentication
 
 **Wireless Security:**
-- [ ] WPA3 encryption
-- [ ] Protected Management Frames (PMF)
-- [ ] WIDS/WIPS deployment
-- [ ] Regular wireless surveys
-- [ ] Disable WPS
-- [ ] Strong pre-shared keys (20+ characters)
+- [x] WPA3 encryption
+- [x] Protected Management Frames (PMF 802.11w)
+- [x] WIDS/WIPS deployment
+- [x] Regular wireless surveys
+- [x] Disable WPS
+- [x] Strong PSKs (20+ characters)
 
 **Monitoring:**
-- [ ] SIEM with device correlation
-- [ ] USB device logging
-- [ ] Network traffic analysis
-- [ ] PowerShell/command logging
-- [ ] Behavioral analytics
-- [ ] Wireless IDS (Kismet, WIDS)
-
----
-
-## 📊 Complete Payload Overview
-
-### USB Attack Devices
-
-**KeyCroc:**
-- System Reconnaissance (Windows)
-- Credential Exfiltration (Windows)
-
-**Rubber Ducky:**
-- System Recon (Windows)
-- Reverse Shell (Windows)
-- Credential Harvester (Windows)
-- Quick Recon (Linux)
-- Persistence (Linux)
-
-**Plunder Bug:**
-- Document Harvester
-- Credentials & Keys
-- Media Collector
-- Database Exfiltrator
-
-### Network Attack Devices
-
-**LAN Turtle:**
-- Persistent Access
-- Network Reconnaissance
-- DNS Spoofing
-- Packet Capture
-
-**Shark Jack:**
-- Network Reconnaissance
-- Packet Capture
-- SMB Enumeration
-- Responder Attack
-- SSH Brute Force
-
-### Wireless Attack Device
-
-**WiFi Pineapple:**
-- Evil Portal
-- PineAP
-- Deauthentication
-- Recon Scanner
-- Handshake Capture
-- Packet Capture
-
----
-
-## 🚀 Quick Start
-
-### Installation
-
-```bash
-# Clone repository
-git clone https://github.com/CamoRageaholic1/Hak5-Arsenal.git
-cd Hak5-Arsenal
-
-# Install Python tools dependencies
-pip install -r requirements.txt
-```
-
-### Device Setup Examples
-
-**USB Devices (KeyCroc, Rubber Ducky, Plunder Bug):**
-```bash
-# KeyCroc
-scp keycroc/payloads/system-recon.croc root@172.16.64.1:/root/payloads/
-
-# Rubber Ducky
-python rubber-ducky/tools/payload-encoder.py payload.txt
-
-# Plunder Bug
-# Copy modules to MicroSD card
-cp plunder-bug/modules/*.sh /mnt/plunderbug/
-```
-
-**Network Devices (LAN Turtle, Shark Jack):**
-```bash
-# LAN Turtle
-scp lan-turtle/modules/network-recon.sh root@172.16.84.1:/turtle/modules/
-
-# Shark Jack
-ssh root@172.16.24.1
-cp /root/payloads/network-recon.sh /root/payload.sh
-```
-
-**Wireless Device (WiFi Pineapple):**
-```bash
-# Web interface
-http://172.16.42.1:1471
-
-# SSH
-scp wifi-pineapple/modules/evil-portal.sh root@172.16.42.1:/pineapple/modules/
-```
+- [x] SIEM with correlation rules
+- [x] USB device logging
+- [x] Network traffic analysis
+- [x] PowerShell command logging
+- [x] Behavioral analytics (UEBA)
+- [x] Wireless IDS (Kismet, WIDS)
 
 ---
 
@@ -299,88 +430,51 @@ scp wifi-pineapple/modules/evil-portal.sh root@172.16.42.1:/pineapple/modules/
 ### USB Device Detection
 - Event ID 6416 - New device recognized
 - Event ID 20001/20003 - USB connect/disconnect
-- Rapid file access patterns
+- Event ID 4688 - Process creation after USB insertion
+- Rapid sequential file access patterns
 - Unknown HID devices
-- Bulk file reads
 
 ### Network Anomaly Detection
-- Unknown MAC addresses
-- Network scanning activity
-- LLMNR/NBT-NS poisoning
+- Unknown MAC addresses on network
+- Network scanning activity (nmap signatures)
+- LLMNR/NBT-NS poisoning attempts
 - Rogue DHCP responses
 - SSH brute force attempts
 - Unusual authentication patterns
+- New devices requesting DHCP
 
 ### Wireless Attack Detection
 - Duplicate SSIDs with different BSSIDs
-- Deauthentication storms
+- Deauthentication storms (excessive deauth frames)
 - Rogue access points
 - Evil twin detection
-- Certificate warnings
+- Certificate warnings on known networks
 - Unexpected captive portals
-
----
-
-## 🛠️ Analysis Tools
-
-### Cross-Device Analyzers
-- **Unified Loot Analyzer** - Parse all device outputs
-- **Payload Converter** - Convert between formats
-- **WiFi Analyzer** - PCAP analysis
-- **Plunder Analyzer** - File categorization
-- **Shark Jack Analyzer** - Network data processing
-- **Hash Cracker** - Credential recovery
-- **Traffic Analyzer** - Network forensics
-- **Handshake Cracker** - WPA2 cracking
-- **File Classifier** - Data organization
-- **Loot Analyzers** - Device-specific parsing
 
 ---
 
 ## 📈 Statistics
 
 - **Devices Supported:** 6
-- **Total Payloads/Modules:** 26
-- **Analysis Tools:** 10
-- **Documentation Pages:** 30+
-- **Lines of Code:** 15,000+
+- **Total Payloads:** 32 (100% complete)
+- **Documentation:** 100KB+
+- **Lines of Code:** 3,000+
+- **Device Categories:** USB (3), Network (2), Wireless (1)
+- **Platforms Covered:** Windows, Linux, macOS
 - **MITRE Techniques:** 50+
 - **Detection Methods:** 40+
 
 ---
 
-## 🤝 Contributing
+## 🎓 Educational Resources
 
-### We Welcome Contributions!
+### Official Hak5 Documentation
+- **Hak5 Shop:** https://shop.hak5.org
+- **Hak5 Docs:** https://docs.hak5.org
+- **Hak5 Forums:** https://forums.hak5.org
+- **DuckyScript:** https://docs.hak5.org/duckyscript
 
-**Contribution Types:**
-- New payloads/modules
-- Detection improvements
-- Analysis tools
-- Documentation
-- Defensive strategies
-
-**Guidelines:**
-1. Fork repository
-2. Create feature branch
-3. Follow existing structure
-4. Include legal disclaimers
-5. Document defensive countermeasures
-6. Provide detection methods
-7. Test thoroughly
-8. Submit pull request
-
-**All contributions must:**
-- Include legal disclaimers
-- Be educational in nature
-- Follow ethical guidelines
-- Document blue team defenses
-
----
-
-## 📚 Resources
-
-### Training
+### Training Courses
 - **SANS SEC560:** Network Penetration Testing
 - **SANS SEC504:** Hacker Tools and Techniques
 - **SANS SEC617:** Wireless Penetration Testing
@@ -389,18 +483,31 @@ scp wifi-pineapple/modules/evil-portal.sh root@172.16.42.1:/pineapple/modules/
 - **Offensive Security PEN-210:** OSWP
 - **eLearnSecurity eCPPT**
 
-### Communities
-- **Hak5 Forums:** https://forums.hak5.org
-- **Reddit /r/hak5**
-- **Discord:** Hak5 Community
+### Community Resources
+- **Reddit:** /r/hak5
+- **Discord:** Hak5 Community Server
+- **GitHub:** Official Hak5 Repositories
 
-### Documentation
-- **Hak5 Docs:** https://docs.hak5.org
-- **DuckyScript:** https://docs.hak5.org/duckyscript
-- **KeyCroc Wiki:** https://github.com/hak5/keycroc-payloads
-- **LAN Turtle Wiki:** https://github.com/hak5/lanturtle-modules
-- **WiFi Pineapple Wiki:** https://github.com/hak5/wifipineapple-modules
-- **Shark Jack Wiki:** https://github.com/hak5/sharkjack-payloads
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch
+3. Follow existing code structure
+4. Include legal disclaimers
+5. Document defensive countermeasures
+6. Provide detection methods
+7. Test thoroughly
+8. Submit pull request
+
+**All contributions must:**
+- Include appropriate legal warnings
+- Be educational in nature
+- Follow ethical guidelines
+- Document blue team defenses
 
 ---
 
@@ -409,6 +516,12 @@ scp wifi-pineapple/modules/evil-portal.sh root@172.16.42.1:/pineapple/modules/
 MIT License - See [LICENSE](LICENSE)
 
 **Copyright © 2025 David Osisek**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 
 ---
 
@@ -419,10 +532,10 @@ MIT License - See [LICENSE](LICENSE)
 **LinkedIn:** [linkedin.com/in/davidosisek](https://linkedin.com/in/davidosisek)
 
 **For questions about:**
-- Payload usage → Read device-specific docs
-- Legal concerns → Consult attorney
+- Payload usage → Read device-specific documentation
+- Legal concerns → Consult an attorney
 - Defensive strategies → See device-specific guides
-- Contributions → Submit pull request
+- Contributions → Submit a pull request
 
 ---
 
@@ -437,6 +550,28 @@ MIT License - See [LICENSE](LICENSE)
 - **FCC regulations** apply to wireless devices
 
 **If there is ANY doubt about authorization, DO NOT PROCEED.**
+
+---
+
+## 🏆 Project Highlights
+
+**What Makes This Repository Unique:**
+- ✅ Most comprehensive Hak5 arsenal on GitHub (6 devices, 32 payloads)
+- ✅ Production-ready code (tested and documented)
+- ✅ Both offensive and defensive perspectives
+- ✅ Legal compliance frameworks
+- ✅ MITRE ATT&CK mapping
+- ✅ Professional-grade documentation (100KB+)
+- ✅ Multi-platform support (Windows, Linux, macOS)
+- ✅ Complete detection methodologies
+
+**Ideal For:**
+- Security researchers
+- Penetration testers
+- Red team operators
+- Blue team defenders
+- Security students
+- IT professionals
 
 ---
 
