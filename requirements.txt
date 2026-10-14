@@ -14,7 +14,7 @@ dnspython>=2.4.0
 pandas>=2.0.0
 
 # Payload Encoding
-PyYAML>=6.0
+PyYAML>=6.0.3
 
 # Optional: Enhanced Terminal Output
 rich>=13.0.0
