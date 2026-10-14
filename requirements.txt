@@ -11,7 +11,7 @@ netfilterqueue>=1.1.0
 dnspython>=2.9.0
 
 # Data Processing
-pandas>=2.0.0
+pandas>=3.0.6
 
 # Payload Encoding
 PyYAML>=6.0.3
