@@ -1,0 +1,16 @@
+# Dependabot: daily checks. Minor and patch updates are grouped into one PR per
+# package type; major updates get their own PRs. Added 2026-10-14.
+
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: daily
+    groups:
+      pip-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
