@@ -6,7 +6,7 @@ colorama>=0.4.6
 pyperclip>=1.8.2
 
 # Network Analysis (LAN Turtle)
-scapy>=2.5.0
+scapy>=2.8.0
 netfilterqueue>=1.1.0
 dnspython>=2.9.0
 
