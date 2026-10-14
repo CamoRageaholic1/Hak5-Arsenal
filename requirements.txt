@@ -8,7 +8,7 @@ pyperclip>=1.8.2
 # Network Analysis (LAN Turtle)
 scapy>=2.5.0
 netfilterqueue>=1.1.0
-dnspython>=2.4.0
+dnspython>=2.9.0
 
 # Data Processing
 pandas>=2.0.0
